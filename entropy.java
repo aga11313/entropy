@@ -15,9 +15,9 @@ public class MathsIA {
     public static void main(String[] args) {
         int entropy = 0; //initilize the variable for the value of entropy
         
-        File textFile = new File("passwords.txt");
-	    FileReader in;
-        BufferedReader readFile;
+        File textFile = new File("passwords.txt"); //create a new file object from the file passwords.txt
+	    FileReader in; //initialize a new file reader object
+        BufferedReader readFile; //initialize a new buffered reader object
 	    String lineOfText;
 
         int count = 0;
@@ -31,18 +31,21 @@ public class MathsIA {
             int length[] = new int[1000];
             int current = 0;
 			
+            //read the contents of the file into an array
             while ((lineOfText = readFile.readLine()) != null)
 			{                
                 array[current] = lineOfText;
                 current++;
                             
 			}
-                System.out.print("Finished reading...");
+                System.out.print("Finished reading..."); //status update message
                         
                 System.out.println("sorting");
                 quickSort(array, 0, array.length-1); //performs a quicksort algorithm on the array of passwords
 
+
                 int first = 0;
+                //counts the occurence of each passsword and stores them in the counter array
                 for(int i = 1; i<array.length; i++){
                     length[array[i].length()]++;
                     if(array[i] == null ? array[i-1] == null : array[i].equals(array[i-1])){
@@ -57,6 +60,7 @@ public class MathsIA {
                 double sum = 0;
                 double result;
                
+                //performs calculations using logarithms on the obtained data
                 for(int i=0; i<counter.length; i++){        
                     if(counter[i] != 0){
                         double a = (pow(85,20));
@@ -65,14 +69,14 @@ public class MathsIA {
                         sum = sum + result;
                     }
                 }
-                System.out.println("Enthropy: " + (-1*sum));
+                System.out.println("Entropy: " + (-1*sum)); //display the value of the entropy
                 System.out.println("\nEnd");
                         
                         
-			readFile.close();
+			readFile.close();// close the file input stream
 			in.close();
                                
-		    } 
+		    } //catch file load errors
             catch (FileNotFoundException e){
 			    System.out.println("File does not exist or could not be found.");
 			    System.err.println("FileNotFoundException: " + e.getMessage());
